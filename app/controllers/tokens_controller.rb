@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+require 'authentication_token'
 
 class TokensController < Doorkeeper::TokensController
   # callback
@@ -37,6 +38,6 @@ class TokensController < Doorkeeper::TokensController
   end
 
   def resource_owner_confirmed?
-    # based on condition jitera studio
+    resource_owner.is_a?(AuthenticationToken) && resource_owner.user.confirmed?
   end
 end
